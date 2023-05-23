@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan 01 JSON</title>
+</head>
+<body>
+
+    
+    Nama: <span id="txNAMA"></span><br>
+    TGL LAHIR: <span id="txTALAG"></span><br>
+    Jenis Kelamin: <span id="txJKEL"></span><br>
+    Alamat: <span id="txALMT"></span><br>
+    Jurusan:<span id="txJRS"></span>
+
+
+
+   <script>
+    const bacadta = new XMLHttpRequest();
+    bacadta.open("GET", "http://localhost/Jeni/sesi11/latihan01.php");
+    bacadta.send();
+
+
+    bacadta.onload = function(){
+        const dta = JSON.parse(this.responseText);
+
+        console.log(dta);
+        let jkel = "Laki-Laki";
+        if(dta.JKEL=="P"){
+            jkel = "Perempuan";
+        }
+
+        document.getElementById("txNAMA").innerHTML=dta.Nama
+        document.getElementById("txTALAG").innerHTML=dta.TGL_LAHIR
+        document.getElementById("txJKEL").innerHTML=jkel
+        document.getElementById("txALMT").innerHTML=dta.Alamat
+        document.getElementById("txJRS").innerHTML=dta.Jurusan
+        
+    }
+
+   </script> 
+
+
+</body>
+</html>
